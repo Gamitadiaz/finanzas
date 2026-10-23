@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Colores como tokens: el modo oscuro tiene sus propios valores, no una inversión. */
+:root {
+  --fondo: #f9f9f7;
+  --superficie: #fcfcfb;
+  --tinta: #0b0b0b;
+  --tinta-2: #52514e;
+  --tinta-3: #6f6d68;
+  --borde: rgba(11, 11, 11, 0.1);
+  --rejilla: #e1e0d9;
+  --eje: #c3c2b7;
+  --acento: #2a78d6;
+  --acento-tinta: #ffffff;
+  --serie-1: #2a78d6;
+  --serie-2: #eb6834;
+  --bien: #006300;
+  --bien-fondo: #e6f4e6;
+  --alerta: #8a5a00;
+  --alerta-fondo: #fdf1d6;
+  --mal: #b42323;
+  --mal-fondo: #fbe7e7;
+  --mal-marca: #d03b3b;
+  --bien-marca: #0ca30c;
+  --alerta-marca: #fab219;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0d0d0d;
+    --superficie: #1a1a19;
+    --tinta: #f0efec;
+    --tinta-2: #c3c2b7;
+    --tinta-3: #9a988f;
+    --borde: rgba(255, 255, 255, 0.1);
+    --rejilla: #2c2c2a;
+    --eje: #383835;
+    --acento: #3987e5;
+    --acento-tinta: #ffffff;
+    --serie-1: #3987e5;
+    --serie-2: #d95926;
+    --bien: #0ca30c;
+    --bien-fondo: #10260f;
+    --alerta: #fab219;
+    --alerta-fondo: #2b220c;
+    --mal: #ff7b7b;
+    --mal-fondo: #2d1414;
+    --mal-marca: #d03b3b;
+    --bien-marca: #0ca30c;
+    --alerta-marca: #fab219;
+  }
+}
+
+@theme inline {
+  --color-fondo: var(--fondo);
+  --color-superficie: var(--superficie);
+  --color-tinta: var(--tinta);
+  --color-tinta-2: var(--tinta-2);
+  --color-tinta-3: var(--tinta-3);
+  --color-borde: var(--borde);
+  --color-acento: var(--acento);
+  --color-acento-tinta: var(--acento-tinta);
+  --color-serie-1: var(--serie-1);
+  --color-serie-2: var(--serie-2);
+  --color-bien: var(--bien);
+  --color-bien-fondo: var(--bien-fondo);
+  --color-alerta: var(--alerta);
+  --color-alerta-fondo: var(--alerta-fondo);
+  --color-mal: var(--mal);
+  --color-mal-fondo: var(--mal-fondo);
+  --font-sans: var(--font-geist-sans);
+}
+
+body {
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Cifras alineadas en columnas. */
+.cifra {
+  font-variant-numeric: tabular-nums;
+}
