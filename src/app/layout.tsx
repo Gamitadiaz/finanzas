@@ -7,9 +7,12 @@ import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: { default: "Mis Finanzas", template: "%s · Mis Finanzas" },
   description: "Ingresos, gastos, presupuesto, metas de ahorro, deudas y calculadora de interés compuesto.",
+  icons: { icon: `${base}/icono/32.png`, apple: `${base}/icono/180.png` },
   appleWebApp: { capable: true, title: "Finanzas", statusBarStyle: "default" },
 };
 

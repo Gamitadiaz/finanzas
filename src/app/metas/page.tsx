@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { type FormEvent, useState } from "react";
 
 import { Pagina } from "@/components/navegacion";
@@ -88,7 +89,13 @@ function TarjetaMeta({ meta, onCambio }: { meta: Meta; onCambio: () => void }) {
   return (
     <Tarjeta className="space-y-3">
       <Titulo accion={<Boton aria-label={`Borrar ${meta.nombre}`} className="px-2" onClick={() => void borrar()} variante="peligro">✕</Boton>}>
-        {meta.nombre}
+        {/canad[aá]/i.test(meta.nombre) ? (
+          <Link className="text-acento" href="/canada">
+            {meta.nombre} →
+          </Link>
+        ) : (
+          meta.nombre
+        )}
       </Titulo>
       <div className="flex items-baseline justify-between gap-2">
         <p className="cifra">

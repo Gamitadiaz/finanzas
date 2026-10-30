@@ -96,7 +96,7 @@ function Entrar({ sb }: { sb: SupabaseClient }) {
       const { data, error } = await sb.auth.signUp({
         email: correo,
         password: clave,
-        options: { emailRedirectTo: window.location.origin },
+        options: { emailRedirectTo: `${window.location.origin}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/` },
       });
       if (error) {
         setError(error.message);

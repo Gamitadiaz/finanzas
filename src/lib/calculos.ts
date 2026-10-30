@@ -178,3 +178,39 @@ export function proximoPago(diaPago: number, hoy = new Date()) {
   const dias = Math.round((fecha.getTime() - inicioHoy.getTime()) / 86_400_000);
   return { fecha, dias };
 }
+
+// Meses completos entre dos fechas "AAAA-MM-DD" (0 si `hasta` ya pasó).
+export function mesesEntre(desde: string, hasta: string) {
+  const [a1, m1, d1] = desde.split("-").map(Number);
+  const [a2, m2, d2] = hasta.split("-").map(Number);
+  return Math.max(0, (a2 - a1) * 12 + (m2 - m1) - (d2 < d1 ? 1 : 0));
+}
+
+// Proyección de una meta: lo ahorrado crece desde hoy; los aportes empiezan en `inicioAportes`.
+export function proyectarMeta({
+  ahorrado,
+  aporteMensual,
+  tasaAnual,
+  hoy,
+  inicioAportes,
+  fechaLimite,
+}: {
+  ahorrado: number;
+  aporteMensual: number;
+  tasaAnual: number;
+  hoy: string;
+  inicioAportes: string;
+  fechaLimite: string;
+}) {
+  const m = tasaMensual(tasaAnual, 12);
+  const mesesTotales = mesesEntre(hoy, fechaLimite);
+  const mesesAportando = mesesEntre(inicioAportes > hoy ? inicioAportes : hoy, fechaLimite);
+  const crecimientoAportes = m === 0 ? mesesAportando : ((1 + m) ** mesesAportando - 1) / m;
+  return {
+    mesesAportando,
+    estimado: ahorrado * (1 + m) ** mesesTotales + aporteMensual * crecimientoAportes,
+    // Aporte mensual que haría falta en los mismos meses para llegar justo a `objetivo`.
+    aporteNecesario: (objetivo: number) =>
+      mesesAportando > 0 ? Math.max(0, objetivo - ahorrado * (1 + m) ** mesesTotales) / crecimientoAportes : null,
+  };
+}

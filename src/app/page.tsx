@@ -105,7 +105,13 @@ function Resumen() {
             return (
               <li className="space-y-1" key={m.id}>
                 <div className="flex justify-between gap-2 text-sm">
-                  <span className="truncate">{m.nombre}</span>
+                  {/canad[aá]/i.test(m.nombre) ? (
+                    <Link className="truncate text-acento" href="/canada">
+                      {m.nombre} →
+                    </Link>
+                  ) : (
+                    <span className="truncate">{m.nombre}</span>
+                  )}
                   <span className="cifra text-tinta-2">
                     {formatoPesos(ahorrado)} / {formatoPesos(objetivo)}
                   </span>
