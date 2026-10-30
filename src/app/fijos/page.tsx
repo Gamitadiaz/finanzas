@@ -212,7 +212,7 @@ function NuevoFijo({ onCreado }: { onCreado: () => Promise<void> }) {
           </Campo>
           <Campo etiqueta="¿Cada cuándo?" id="fijo-frecuencia">
             <Selector id="fijo-frecuencia" onChange={(e) => setFrecuencia(e.currentTarget.value as "quincenal" | "mensual")} value={frecuencia}>
-              <option value="quincenal">Cada quincena (15 y fin de mes)</option>
+              <option value="quincenal">Cada quincena (15 y 30)</option>
               <option value="mensual">Una vez al mes</option>
             </Selector>
           </Campo>

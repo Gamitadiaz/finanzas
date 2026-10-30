@@ -1,4 +1,4 @@
-// Quincenas pagadas el día 15 y el último día de cada mes.
+// Quincenas pagadas el día 15 y el 30 de cada mes (en febrero, su último día).
 // Las fechas viajan como texto "AAAA-MM-DD" en hora local para no pelear con zonas horarias.
 
 export function aFecha(d: Date) {
@@ -25,7 +25,7 @@ export function diasEntre(desde: string, hasta: string) {
 }
 
 function pagosDelMes(anio: number, mes0: number) {
-  return [aFecha(new Date(anio, mes0, 15)), aFecha(new Date(anio, mes0, ultimoDia(anio, mes0)))];
+  return [aFecha(new Date(anio, mes0, 15)), aFecha(new Date(anio, mes0, Math.min(30, ultimoDia(anio, mes0))))];
 }
 
 export type Periodo = {
@@ -51,7 +51,7 @@ export function periodoSiguiente(periodo: Periodo) {
   return periodoDe(periodo.siguientePago);
 }
 
-// Días de pago (15 y último) entre dos fechas, inclusive.
+// Días de pago (15 y 30) entre dos fechas, inclusive.
 export function pagosQuincenalesEntre(desde: string, hasta: string) {
   const fechas: string[] = [];
   const d = deFecha(desde);

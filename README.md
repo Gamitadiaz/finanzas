@@ -72,7 +72,7 @@ src/
     logo.tsx              El logo (se usa también para los íconos)
   lib/                    Lógica sin pantallas (se puede probar sola)
     calculos.ts           Formato de pesos, interés compuesto, deudas, proyección de metas
-    quincenas.ts          Fechas de pago (15 y último día) y periodos de quincena
+    quincenas.ts          Fechas de pago (15 y 30) y periodos de quincena
     plan.ts               Cálculo del plan de una quincena
     presupuesto.ts        Estado de cada categoría (bien / alerta / pasado)
     resico.ts             Tablas y cálculo de ISR RESICO e IVA
